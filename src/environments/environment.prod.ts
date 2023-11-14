@@ -1,3 +1,6 @@
+import { defaltEnvironment } from "./enviroment.defalt";
+
 export const environment = {
-  production: true
+  ...defaltEnvironment,
+  production: true,
 };

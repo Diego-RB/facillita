@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as ApexCharts from 'apexcharts';
+import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
 import * as Chartist from 'chartist';
 
 export type ChartOptions = {
@@ -15,10 +16,43 @@ export type ChartOptions = {
   styleUrls: ["./dashboard.component.css"],
 })
 export class DashboardComponent implements OnInit {
-  
-  constructor() {
-   
+  // Doughnut
+  public doughnutChartLabels: string[] = [
+    "Download Sales",
+    "In-Store Sales",
+    "Mail-Order Sales",
+  ];
+  public doughnutChartData: ChartData<"doughnut"> = {
+    labels: this.doughnutChartLabels,
+    datasets: [
+      { data: [350, 450, 100] },
+      { data: [50, 150, 120] },
+      { data: [250, 130, 70] },
+    ],
+  };
+  public doughnutChartType: ChartType = "doughnut";
+
+  // events
+  public chartClicked({
+    event,
+    active,
+  }: {
+    event: ChartEvent;
+    active: object[];
+  }): void {
+    console.log(event, active);
   }
+
+  public chartHovered({
+    event,
+    active,
+  }: {
+    event: ChartEvent;
+    active: object[];
+  }): void {
+    console.log(event, active);
+  }
+  constructor() {}
 
   startAnimationForLineChart(chart) {
     let seq: any, delays: any, durations: any;
